@@ -37,12 +37,13 @@ function GeneDetailsPage() {
       } catch (err) {
         console.error(err);
 
-        setError(
-          "Unable to find this gene. Please check the gene symbol and try again."
-        );
+        if (err instanceof Error) {
+            setError(err.message);
+        } else {
+            setError("Unexpected error occurred");
+        }
 
-      } finally {
-        setLoading(false);
+        
       }
     }
 
