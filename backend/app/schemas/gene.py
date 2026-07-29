@@ -1,4 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
+
+
+class GeneLinks(BaseModel):
+    ncbi: HttpUrl
+    ensembl: HttpUrl
+    uniprot: HttpUrl
 
 
 class GeneResponse(BaseModel):
@@ -8,3 +14,4 @@ class GeneResponse(BaseModel):
     entrez_id: str | None = None
     chromosome: str | None = None
     taxid: int | None = None
+    links: GeneLinks

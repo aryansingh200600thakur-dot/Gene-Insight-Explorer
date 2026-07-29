@@ -1,8 +1,17 @@
+import useGeneSearch from "../hooks/useGeneSearch";
+
 function SearchBar() {
+  const { symbol, setSymbol, handleSubmit } = useGeneSearch();
+
   return (
-    <form className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row"
+    >
       <input
         type="text"
+        value={symbol}
+        onChange={(event) => setSymbol(event.target.value)}
         placeholder="Search a gene (e.g. TP53, BRCA1, EGFR)"
         className="flex-1 rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
       />
