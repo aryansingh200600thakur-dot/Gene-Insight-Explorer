@@ -1,10 +1,14 @@
+import { Routes, Route } from "react-router-dom";
+
+import HomePage from "./pages/HomePage";
+import GeneDetailsPage from "./pages/GeneDetailsPage";
+
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100">
-      <h1 className="text-4xl font-bold text-blue-600">
-        Gene Insight Explorer
-      </h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/gene/:symbol" element={<GeneDetailsPage />} />
+    </Routes>
   );
 }
 
