@@ -9,6 +9,9 @@ class QuickGOClient:
     async def get_go_terms(self, gene_symbol: str) -> dict[str, Any]:
         """
         Fetch Gene Ontology annotations for a human gene.
+
+        If QuickGO has no annotations for the gene,
+        return an empty result instead of raising an exception.
         """
 
         url = (
@@ -24,7 +27,14 @@ class QuickGOClient:
 
         async with httpx.AsyncClient(timeout=20) as client:
             response = await client.get(url, headers=headers)
+
+            # No annotations found
+            if response.status_code == 404:
+                return {"results": []}
+
+            # Any other API error
             response.raise_for_status()
+
             return response.json()
 
 
