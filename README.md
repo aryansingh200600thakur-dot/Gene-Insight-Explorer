@@ -1,14 +1,41 @@
-# Gene Insight Explorer
+# 🧬 Gene Insight Explorer
 
-A production-ready web application for exploring gene information using the MyGene.info API.
+## AI-Powered Human Gene Exploration Platform
 
-## Tech Stack
+Gene Insight Explorer is a modern bioinformatics platform that allows users to explore human genes, genomic information, biological functions, and AI-assisted scientific insights through an intuitive web interface.
 
-- React + TypeScript + Vite
-- Tailwind CSS
-- FastAPI
-- MyGene.info
+The platform integrates biological databases with artificial intelligence to simplify complex genomic information and make it accessible for students, researchers, and biotechnology enthusiasts.
 
-## Status
+---
 
-🚧 Under active development.
+# 🚀 Features
+
+## 🧬 Gene Search
+
+Search human genes using official gene symbols:
+
+Examples:
+
+- TP53
+- BRCA1
+- BRCA2
+- EGFR
+- MYC
+
+
+---
+
+## 🤖 AI Biological Insights
+
+Generates structured biological explanations:
+
+- AI Overview
+- Biological Role
+- Disease Relevance
+- Therapeutic Potential
+- Research Highlights
+
+
+---
+
+## 🧪 Genomic Information
