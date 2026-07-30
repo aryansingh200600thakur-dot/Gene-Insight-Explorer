@@ -8,11 +8,18 @@ import ErrorMessage from "../components/ErrorMessage";
 
 import { getGene } from "../services/geneService";
 import type { GeneResponse } from "../services/geneService";
+import { getAIInsights } from "../services/aiService";
+import type { AIInsightsResponse } from "../types/ai";
+
+import AIInsightsCard from "../components/AIInsightsCard";
 
 function GeneDetailsPage() {
   const { symbol } = useParams<{ symbol: string }>();
 
   const [gene, setGene] = useState<GeneResponse | null>(null);
+  const [aiInsights, setAIInsights] =
+    useState<AIInsightsResponse | null>(null);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -28,10 +35,14 @@ function GeneDetailsPage() {
         setLoading(true);
         setError("");
         setGene(null);
+        setAIInsights(null);
 
         const data = await getGene(symbol);
-
         setGene(data);
+
+        const ai = await getAIInsights(symbol);
+        setAIInsights(ai);
+
       } catch (err) {
         console.error(err);
 
@@ -98,6 +109,12 @@ function GeneDetailsPage() {
                 value={gene.taxid ? String(gene.taxid) : "Unknown"}
               />
             </section>
+
+            {aiInsights && (
+                 <AIInsightsCard
+                   insights={aiInsights}
+                 />
+            )}
 
             {/* External Resources */}
             <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">

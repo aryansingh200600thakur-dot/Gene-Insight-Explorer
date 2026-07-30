@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.api.ontology import router as ontology_router
+from app.api.ai import router as ai_router
 
 from app.api.gene import router as gene_router
 
@@ -23,6 +25,9 @@ app.add_middleware(
 )
 
 app.include_router(gene_router)
+app.include_router(ontology_router)
+app.include_router(ai_router)
+
 
 
 @app.get("/")

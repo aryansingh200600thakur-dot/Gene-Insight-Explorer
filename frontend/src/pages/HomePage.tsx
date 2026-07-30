@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import FeatureCard from "../components/FeatureCard";
 import Footer from "../components/Footer";
+import StatisticsSection from "../components/StatisticsSection";
 
 function HomePage() {
   return (
@@ -9,6 +10,8 @@ function HomePage() {
       <Navbar />
 
       <Hero />
+
+      <StatisticsSection />
 
       <section className="mx-auto max-w-7xl px-6 pb-20">
         <div className="grid gap-6 md:grid-cols-3">

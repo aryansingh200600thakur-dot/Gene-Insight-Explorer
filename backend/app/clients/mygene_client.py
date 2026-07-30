@@ -21,6 +21,18 @@ class MyGeneClient:
             "q": f"symbol:{symbol}",
             "species": "human",
             "size": 1,
+            "fields": ",".join([
+                "symbol",
+                "name",
+                "summary",
+                "entrezgene",
+                "taxid",
+                "type_of_gene",
+                "alias",
+                "genomic_pos",
+                "ensembl",
+                "uniprot",
+            ]),
         }
 
         async with httpx.AsyncClient(timeout=self.timeout) as client:

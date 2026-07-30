@@ -2,45 +2,55 @@ import SearchBar from "./SearchBar";
 
 function Hero() {
   return (
-    <section className="mx-auto flex max-w-7xl flex-col items-center px-6 py-24 text-center">
+    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50">
 
-      <span className="rounded-full bg-blue-100 px-4 py-1 text-sm font-medium text-blue-700">
-        Production MVP • Version 1.0
-      </span>
-
-
-      <h1 className="mt-6 max-w-4xl text-5xl font-bold tracking-tight text-slate-900 md:text-6xl">
-        Explore Human Genes With Reliable Biological Insights
-      </h1>
-
-
-      <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-        Search gene symbols and access essential biological information,
-        genomic references, and trusted scientific resources through a
-        clean and responsive research platform.
-      </p>
-
-
-      <div className="mt-10 w-full max-w-2xl">
-        <SearchBar />
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute left-20 top-20 h-72 w-72 rounded-full bg-blue-300 blur-3xl"></div>
+        <div className="absolute right-20 bottom-20 h-72 w-72 rounded-full bg-indigo-300 blur-3xl"></div>
       </div>
 
+      <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-28 text-center">
 
-      <div className="mt-10 flex flex-wrap justify-center gap-4 text-sm text-slate-500">
-
-        <span className="rounded-lg bg-white px-4 py-2 shadow-sm">
-          🧬 Human Gene Data
+        <span className="rounded-full bg-blue-100 px-5 py-2 text-sm font-semibold text-blue-700">
+          🚀 Version 2.0
         </span>
 
+        <h1 className="mt-8 max-w-5xl text-5xl font-extrabold tracking-tight text-slate-900 md:text-7xl">
+          Explore Human Genes with
+          <span className="block text-blue-600">
+            AI-Powered Biological Insights
+          </span>
+        </h1>
 
-        <span className="rounded-lg bg-white px-4 py-2 shadow-sm">
-          🔬 Research Resources
-        </span>
+        <p className="mt-8 max-w-3xl text-xl leading-9 text-slate-600">
+          Search thousands of human genes, understand their biological
+          functions, explore Gene Ontology annotations, and discover
+          AI-generated scientific insights—all in one modern platform.
+        </p>
 
+        <div className="mt-12 w-full max-w-2xl">
+          <SearchBar />
+        </div>
 
-        <span className="rounded-lg bg-white px-4 py-2 shadow-sm">
-          🌐 Responsive Platform
-        </span>
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+
+          <div className="rounded-full border border-slate-200 bg-white px-5 py-2 shadow-sm">
+            🧬 Human Genes
+          </div>
+
+          <div className="rounded-full border border-slate-200 bg-white px-5 py-2 shadow-sm">
+            🤖 AI Insights
+          </div>
+
+          <div className="rounded-full border border-slate-200 bg-white px-5 py-2 shadow-sm">
+            📚 Gene Ontology
+          </div>
+
+          <div className="rounded-full border border-slate-200 bg-white px-5 py-2 shadow-sm">
+            ⚡ Fast Search
+          </div>
+
+        </div>
 
       </div>
 

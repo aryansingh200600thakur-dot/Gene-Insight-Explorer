@@ -1,9 +1,23 @@
-function LoadingSpinner() {
+export default function LoadingSpinner() {
   return (
-    <div className="flex min-h-[300px] items-center justify-center">
-      <div className="h-10 w-10 animate-spin rounded-full border-4 border-blue-600 border-t-transparent" />
+    <div className="space-y-6 animate-pulse">
+
+      <div className="h-20 rounded-2xl bg-slate-200"></div>
+
+      <div className="h-48 rounded-2xl bg-slate-200"></div>
+
+      <div className="grid gap-6 md:grid-cols-3">
+
+        <div className="h-32 rounded-2xl bg-slate-200"></div>
+
+        <div className="h-32 rounded-2xl bg-slate-200"></div>
+
+        <div className="h-32 rounded-2xl bg-slate-200"></div>
+
+      </div>
+
+      <div className="h-72 rounded-2xl bg-slate-200"></div>
+
     </div>
   );
 }
-
-export default LoadingSpinner;
