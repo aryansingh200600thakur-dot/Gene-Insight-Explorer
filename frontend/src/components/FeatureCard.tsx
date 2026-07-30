@@ -15,23 +15,37 @@ function FeatureCard({
         flex-col
         rounded-2xl
         border
-        border-slate-200
-        bg-white
+        border-white/10
+        bg-white/10
         p-8
-        shadow-sm
+        shadow-xl
+        backdrop-blur-xl
         transition
         duration-300
-        hover:-translate-y-1
-        hover:shadow-lg
+        hover:-translate-y-2
+        hover:bg-white/20
+        hover:shadow-2xl
       "
     >
 
-      <h3 className="text-xl font-semibold text-slate-900">
+      <h3
+        className="
+        text-xl
+        font-semibold
+        text-white
+        "
+      >
         {title}
       </h3>
 
 
-      <p className="mt-4 leading-7 text-slate-600">
+      <p
+        className="
+        mt-4
+        leading-7
+        text-slate-300
+        "
+      >
         {description}
       </p>
 

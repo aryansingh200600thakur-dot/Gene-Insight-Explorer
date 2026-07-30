@@ -1,75 +1,68 @@
-# React + TypeScript + Vite
+# 🧬 Gene Insight Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## AI-Powered Human Gene Exploration Platform
 
-Currently, two official plugins are available:
+Gene Insight Explorer is a modern bioinformatics platform that allows users to explore human genes, genomic information, biological functions, and AI-assisted scientific insights through an intuitive web interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The platform integrates biological databases with artificial intelligence to simplify complex genomic information and make it accessible for students, researchers, and biotechnology enthusiasts.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# 🚀 Features
 
-## Expanding the ESLint configuration
+## 🧬 Gene Search
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Search human genes using official gene symbols:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Examples:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- TP53
+- BRCA1
+- BRCA2
+- EGFR
+- MYC
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🤖 AI Biological Insights
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Generates structured biological explanations:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- AI Overview
+- Biological Role
+- Disease Relevance
+- Therapeutic Potential
+- Research Highlights
 
-```
+
+---
+
+## 🧪 Genomic Information
+
+Provides:
+
+- Chromosome location
+- Entrez ID
+- Ensembl ID
+- UniProt ID
+- Gene type
+- Gene aliases
+
+
+---
+
+## 🌐 Scientific Database Integration
+
+Data is collected from trusted biological resources:
+
+- MyGene.info
+- NCBI
+- Ensembl
+- UniProt
+
+
+---
+
+# 🏗️ Architecture
+

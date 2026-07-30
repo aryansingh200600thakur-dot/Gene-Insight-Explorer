@@ -24,7 +24,7 @@ export default function StatisticsSection() {
 
       <div className="mb-12 text-center">
 
-        <h2 className="text-4xl font-bold text-slate-900">
+        <h2 className="text-4xl font-bold text-white">
           Why Gene Insight Explorer?
         </h2>
 

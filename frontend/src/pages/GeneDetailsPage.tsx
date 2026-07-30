@@ -8,179 +8,416 @@ import ErrorMessage from "../components/ErrorMessage";
 
 import { getGene } from "../services/geneService";
 import type { GeneResponse } from "../services/geneService";
+
 import { getAIInsights } from "../services/aiService";
 import type { AIInsightsResponse } from "../types/ai";
 
 import AIInsightsCard from "../components/AIInsightsCard";
 
+
 function GeneDetailsPage() {
-  const { symbol } = useParams<{ symbol: string }>();
 
-  const [gene, setGene] = useState<GeneResponse | null>(null);
-  const [aiInsights, setAIInsights] =
-    useState<AIInsightsResponse | null>(null);
+  const { symbol } = useParams<{symbol:string}>();
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [gene,setGene] =
+    useState<GeneResponse|null>(null);
 
-  useEffect(() => {
-    async function fetchGene() {
-      if (!symbol) {
+  const [aiInsights,setAIInsights] =
+    useState<AIInsightsResponse|null>(null);
+
+
+  const [loading,setLoading] =
+    useState(true);
+
+  const [error,setError] =
+    useState("");
+
+
+
+  useEffect(()=>{
+
+    async function fetchGene(){
+
+      if(!symbol){
         setError("No gene symbol provided.");
         setLoading(false);
         return;
       }
 
-      try {
+
+      try{
+
         setLoading(true);
         setError("");
-        setGene(null);
-        setAIInsights(null);
 
-        const data = await getGene(symbol);
+        const data =
+          await getGene(symbol);
+
         setGene(data);
 
-        const ai = await getAIInsights(symbol);
+
+        const ai =
+          await getAIInsights(symbol);
+
         setAIInsights(ai);
 
-      } catch (err) {
+
+      }
+
+      catch(err){
+
         console.error(err);
 
-        if (err instanceof Error) {
+        if(err instanceof Error){
           setError(err.message);
-        } else {
+        }
+        else{
           setError("Unexpected error occurred.");
         }
-      } finally {
+
+      }
+
+      finally{
         setLoading(false);
       }
+
     }
 
+
     fetchGene();
-  }, [symbol]);
+
+
+  },[symbol]);
+
+
+
 
   return (
-    <div className="min-h-screen bg-slate-50">
+
+    <div className="
+    min-h-screen
+    bg-slate-950
+    ">
+
+
       <Navbar />
 
-      <main className="mx-auto max-w-6xl px-6 py-12">
-        {loading && <LoadingSpinner />}
 
-        {!loading && error && <ErrorMessage message={error} />}
 
-        {!loading && gene && (
-          <div className="space-y-8">
-            {/* Gene Header */}
-            <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-              <h1 className="text-4xl font-bold text-slate-900">
+      <main className="
+      mx-auto
+      max-w-6xl
+      px-6
+      py-12
+      ">
+
+
+
+      {loading && <LoadingSpinner />}
+
+
+
+      {!loading && error && (
+        <ErrorMessage message={error}/>
+      )}
+
+
+
+
+      {!loading && gene && (
+
+        <div className="space-y-10">
+
+
+
+          {/* Gene Header */}
+
+          <section
+          className="
+          rounded-3xl
+          border
+          border-white/10
+          bg-white/10
+          p-10
+          backdrop-blur-xl
+          "
+          >
+
+            <div className="flex items-center gap-4">
+
+              <div className="
+              rounded-2xl
+              bg-blue-500/20
+              p-4
+              text-4xl
+              ">
+                🧬
+              </div>
+
+
+              <div>
+
+              <h1 className="
+              text-5xl
+              font-bold
+              text-white
+              ">
                 {gene.symbol}
               </h1>
 
-              <p className="mt-3 text-xl text-slate-600">
-                {gene.name ?? "Name unavailable"}
+
+              <p className="
+              mt-3
+              text-xl
+              text-slate-300
+              ">
+                {gene.name ?? "Gene name unavailable"}
               </p>
-            </section>
 
-            {/* Biological Summary */}
-            <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-              <h2 className="text-2xl font-semibold text-slate-900">
-                Biological Summary
-              </h2>
-
-              <p className="mt-4 leading-8 text-slate-600">
-                {gene.summary ?? "No biological summary available."}
-              </p>
-            </section>
-
-            {/* Metadata */}
-            <section className="grid gap-6 md:grid-cols-3">
-              <InfoCard
-                title="Chromosome"
-                value={gene.chromosome ?? "Unknown"}
-              />
-
-              <InfoCard
-                title="Entrez ID"
-                value={gene.entrez_id ?? "Unknown"}
-              />
-
-              <InfoCard
-                title="Taxonomy ID"
-                value={gene.taxid ? String(gene.taxid) : "Unknown"}
-              />
-            </section>
-
-            {aiInsights && (
-                 <AIInsightsCard
-                   insights={aiInsights}
-                 />
-            )}
-
-            {/* External Resources */}
-            <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-              <h2 className="text-2xl font-semibold text-slate-900">
-                External Resources
-              </h2>
-
-              <div className="mt-6 flex flex-wrap gap-4">
-                <ExternalLink
-                  label="NCBI"
-                  url={gene.links.ncbi}
-                />
-
-                <ExternalLink
-                  label="Ensembl"
-                  url={gene.links.ensembl}
-                />
-
-                <ExternalLink
-                  label="UniProt"
-                  url={gene.links.uniprot}
-                />
               </div>
-            </section>
-          </div>
-        )}
+
+
+            </div>
+
+
+            <div className="
+            mt-8
+            inline-block
+            rounded-full
+            bg-cyan-500/20
+            px-5
+            py-2
+            text-sm
+            text-cyan-300
+            ">
+              AI Powered Biological Analysis
+            </div>
+
+
+          </section>
+
+
+
+
+
+          {/* Metadata */}
+
+
+          <section className="
+          grid
+          gap-6
+          md:grid-cols-3
+          ">
+
+
+            <InfoCard
+              title="Chromosome"
+              value={gene.chromosome ?? "Unknown"}
+            />
+
+
+            <InfoCard
+              title="Entrez ID"
+              value={gene.entrez_id ?? "Unknown"}
+            />
+
+
+            <InfoCard
+              title="Taxonomy ID"
+              value={
+                gene.taxid
+                ? String(gene.taxid)
+                : "Unknown"
+              }
+            />
+
+
+          </section>
+
+
+
+
+
+          {/* AI Insights */}
+
+
+          {aiInsights && (
+
+            <AIInsightsCard
+              insights={aiInsights}
+            />
+
+          )}
+
+
+
+
+          {/* Resources */}
+
+
+          <section
+          className="
+          rounded-3xl
+          border
+          border-white/10
+          bg-white/10
+          p-8
+          backdrop-blur-xl
+          ">
+
+
+            <h2 className="
+            text-3xl
+            font-bold
+            text-white
+            ">
+              Scientific Resources
+            </h2>
+
+
+            <div className="
+            mt-6
+            flex
+            flex-wrap
+            gap-4
+            ">
+
+
+              <ExternalLink
+                label="NCBI"
+                url={gene.links.ncbi}
+              />
+
+
+              <ExternalLink
+                label="Ensembl"
+                url={gene.links.ensembl}
+              />
+
+
+              <ExternalLink
+                label="UniProt"
+                url={gene.links.uniprot}
+              />
+
+
+            </div>
+
+
+          </section>
+
+
+
+        </div>
+
+      )}
+
+
+
       </main>
 
+
       <Footer />
+
+
     </div>
+
   );
+
 }
 
-interface InfoCardProps {
-  title: string;
-  value: string;
+
+
+
+interface InfoCardProps{
+  title:string;
+  value:string;
 }
 
-function InfoCard({ title, value }: InfoCardProps) {
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-      <p className="text-sm text-slate-500">{title}</p>
 
-      <p className="mt-2 text-xl font-semibold text-slate-900">
-        {value}
-      </p>
-    </div>
-  );
+function InfoCard({
+  title,
+  value
+}:InfoCardProps){
+
+
+return (
+
+<div
+className="
+rounded-2xl
+border
+border-white/10
+bg-white/10
+p-6
+backdrop-blur-xl
+"
+>
+
+<p className="text-sm text-slate-400">
+{title}
+</p>
+
+
+<p className="
+mt-3
+text-2xl
+font-bold
+text-white
+">
+{value}
+</p>
+
+
+</div>
+
+);
+
 }
 
-interface ExternalLinkProps {
-  label: string;
-  url: string;
+
+
+
+
+interface ExternalLinkProps{
+label:string;
+url:string;
 }
 
-function ExternalLink({ label, url }: ExternalLinkProps) {
-  return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700"
-    >
-      {label}
-    </a>
-  );
+
+function ExternalLink({
+label,
+url
+}:ExternalLinkProps){
+
+
+return (
+
+<a
+href={url}
+target="_blank"
+rel="noopener noreferrer"
+
+className="
+rounded-xl
+bg-blue-600
+px-6
+py-3
+font-semibold
+text-white
+transition
+hover:bg-blue-700
+"
+>
+
+{label}
+
+</a>
+
+);
+
 }
+
+
 
 export default GeneDetailsPage;
