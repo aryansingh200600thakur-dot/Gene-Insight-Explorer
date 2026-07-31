@@ -312,25 +312,29 @@ VITE_API_URL=https://gene-insight-explorer.onrender.com
 
 ## 🏠 Homepage
 
-> Add Homepage Screenshot
+<img width="1892" height="917" alt="Screenshot 2026-07-31 111152" src="https://github.com/user-attachments/assets/fcc104f1-133e-44f5-a88c-f9a77a57f6e7" />
+
 
 ---
 
 ## 🔍 Gene Search
 
-> Add TP53 Search Screenshot
+<img width="1887" height="882" alt="Screenshot 2026-07-31 111240" src="https://github.com/user-attachments/assets/94d2ab2a-4455-4828-9f6f-1bcd37471bdb" />
+
 
 ---
 
 ## 🤖 AI Insights
 
-> Add AI Insights Screenshot
+<img width="1891" height="911" alt="Screenshot 2026-07-31 111332" src="https://github.com/user-attachments/assets/17bc1766-f4ab-472c-87a0-f5c6c2b3f14a" />
+
 
 ---
 
 ## 📊 Gene Information
 
-> Add Gene Details Screenshot
+<img width="1877" height="666" alt="Screenshot 2026-07-31 111313" src="https://github.com/user-attachments/assets/3fa6d146-cac0-44c4-9a48-507cf51912d3" />
+
 
 ---
 
