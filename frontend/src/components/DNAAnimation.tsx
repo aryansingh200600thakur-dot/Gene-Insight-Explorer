@@ -4,7 +4,7 @@ function DNAAnimation() {
   const basePairs = Array.from({ length: 8 });
 
   return (
-    <div className="relative flex h-80 w-80 items-center justify-center">
+    <div className="relative flex h-[420px] w-[420px] items-center justify-center overflow-visible">
 
 
       {/* Glow */}
@@ -121,8 +121,8 @@ function DNAAnimation() {
 
       className="
       absolute
-      -left-10
-      top-20
+      -left-2
+      top-16
       rounded-xl
       border
       border-white/10
@@ -150,8 +150,8 @@ function DNAAnimation() {
 
       className="
       absolute
-      -right-10
-      bottom-20
+      -right-2
+      bottom-16
       rounded-xl
       border
       border-white/10
