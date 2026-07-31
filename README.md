@@ -6,6 +6,9 @@ Gene Insight Explorer is a modern bioinformatics platform that allows users to e
 
 The platform integrates biological databases with artificial intelligence to simplify complex genomic information and make it accessible for students, researchers, and biotechnology enthusiasts.
 
+<img width="1672" height="941" alt="Cover_Image_Gene_Insight_Explorer" src="https://github.com/user-attachments/assets/e7f7c864-a1ce-4a2b-bed5-2246b2859305" />
+
+
 ---
 
 # 🚀 Features
