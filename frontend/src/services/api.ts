@@ -8,27 +8,4 @@ const api = axios.create({
   },
 });
 
-// Retry once if a timeout or network error occurs
-api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const config = error.config;
-
-    if (
-      config &&
-      !config.__isRetryRequest &&
-      (!error.response || error.code === "ECONNABORTED")
-    ) {
-      config.__isRetryRequest = true;
-
-      // Wait 2 seconds before retrying
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      return api(config);
-    }
-
-    return Promise.reject(error);
-  }
-);
-
 export default api;

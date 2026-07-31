@@ -50,15 +50,13 @@ function GeneDetailsPage() {
         setLoading(true);
         setError("");
 
-        const data =
-          await getGene(symbol);
+        const [data, ai] =
+          await Promise.all([
+            getGene(symbol),
+            getAIInsights(symbol),
+          ]);
 
         setGene(data);
-
-
-        const ai =
-          await getAIInsights(symbol);
-
         setAIInsights(ai);
 
 
