@@ -1,163 +1,46 @@
+﻿
+import { ArrowUpRight, BrainCircuit, Sparkles } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import StatisticsSection from "../components/StatisticsSection";
+import WorkflowSection from "../components/WorkflowSection";
+import DataSources from "../components/DataSources";
 import FeatureCard from "../components/FeatureCard";
 import Footer from "../components/Footer";
-import StatisticsSection from "../components/StatisticsSection";
-import DataSources from "../components/DataSources";
-import WorkflowSection from "../components/WorkflowSection";
 
-import { motion } from "framer-motion";
-
-
-function HomePage() {
-
-
-  return (
-
-    <div className="
-    min-h-screen
-    bg-gradient-to-br
-    from-slate-950
-    via-blue-950
-    to-indigo-950
-    text-white
-    ">
-
-
-      <Navbar />
-
-
+export default function HomePage() {
+  return <div className="app-shell">
+    <Navbar />
+    <main>
       <Hero />
-
-
       <StatisticsSection />
 
-
-      <WorkflowSection />
-
-
-      <DataSources />
-
-
-
-
-      {/* Why Gene Insight Explorer */}
-
-      <section className="
-      mx-auto
-      max-w-7xl
-      px-6
-      py-20
-      ">
-
-
-        <motion.div
-
-          initial={{
-            opacity:0,
-            y:30,
-          }}
-
-          whileInView={{
-            opacity:1,
-            y:0,
-          }}
-
-          transition={{
-            duration:0.6,
-          }}
-
-          className="text-center mb-12"
-
-        >
-
-          <h2 className="
-          text-4xl
-          font-bold
-          text-white
-          ">
-            Why Gene Insight Explorer?
-          </h2>
-
-
-          <p className="
-          mt-4
-          text-slate-300
-          ">
-            A modern platform combining genomics,
-            bioinformatics, and artificial intelligence
-            to simplify biological discovery.
-          </p>
-
-
-        </motion.div>
-
-
-
-
-
-        <div className="
-        grid
-        gap-6
-        md:grid-cols-3
-        ">
-
-
-          <FeatureCard
-
-            title="🧬 Fast Gene Search"
-
-            description="
-            Search human genes quickly using official
-            symbols such as TP53, BRCA1, EGFR,
-            and thousands of other targets.
-            "
-
-          />
-
-
-
-          <FeatureCard
-
-            title="🤖 AI Biological Insights"
-
-            description="
-            Convert complex genomic information
-            into understandable biological explanations.
-            "
-
-          />
-
-
-
-          <FeatureCard
-
-            title="🌐 Scientific Integration"
-
-            description="
-            Connect genomic information from trusted
-            biological databases through one platform.
-            "
-
-          />
-
-
+      <section className="features-section">
+        <div className="shell">
+          <div className="section-heading split-heading">
+            <div><span className="section-kicker"><Sparkles size={14} /> THE PLATFORM</span><h2>One interface.<br /><em>Multiple biological layers.</em></h2></div>
+            <p>Designed for students, builders and researchers who need a faster way to move from a gene name to useful biological context.</p>
+          </div>
+          <div className="feature-grid">
+            <FeatureCard icon="search" title="Gene intelligence" description="Search human genes and surface identifiers, genomic metadata and concise biological summaries." />
+            <FeatureCard icon="ai" title="AI-assisted interpretation" description="Turn dense biological records into structured, readable research context while keeping the AI layer clearly labeled." />
+            <FeatureCard icon="network" title="Connected evidence" description="Explore Gene Ontology annotations and jump directly to authoritative external records." />
+          </div>
         </div>
-
-
       </section>
 
+      <WorkflowSection />
+      <DataSources />
 
-
-
-      <Footer />
-
-
-    </div>
-
-  );
-
+      <section className="cta-section">
+        <div className="shell cta-card">
+          <div className="cta-glow" />
+          <div><span className="section-kicker"><BrainCircuit size={14} /> START EXPLORING</span><h2>Ask a gene<br /><em>better questions.</em></h2></div>
+          <div className="cta-copy"><p>Search a gene and inspect the biological layers behind it. Your next research question might start with three letters.</p><a href="#top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Analyze a gene <ArrowUpRight size={17} /></a></div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>;
 }
 
-
-export default HomePage;

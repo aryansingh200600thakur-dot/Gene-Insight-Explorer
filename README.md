@@ -1,278 +1,45 @@
-# 🧬 Gene Insight Explorer
+# Gene Insight Explorer
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/e7f7c864-a1ce-4a2b-bed5-2246b2859305" alt="Gene Insight Explorer Banner" width="100%">
-</p>
+**Gene Insight Explorer 3.0** is a research-oriented web workspace for exploring human genes, genomic metadata, Gene Ontology annotations and structured biological interpretation.
 
-<h2 align="center">
-AI-Powered Human Gene Exploration Platform
-</h2>
+## What changed in 3.0
 
-<p align="center">
-Building AI-powered solutions at the intersection of Bioinformatics and Software Engineering.
-</p>
+- Premium dark scientific interface with responsive layouts and micro-interactions.
+- Faster, clearer gene search experience with example targets.
+- Research/Overview mode on gene profiles.
+- Structured gene profile with identifiers, genomic location and aliases.
+- Conceptual gene-to-context relationship map.
+- Gene Ontology panels for biological process, molecular function and cellular component.
+- Source-layer cards linking to NCBI, Ensembl and UniProt records.
+- Resilient loading and partial-failure handling: a missing AI or GO response no longer blocks the core gene profile.
+- Improved backend error handling and CORS configuration through `FRONTEND_ORIGIN`.
+- Updated metadata, title, theme and accessibility-oriented UI labels.
 
-<p align="center">
+## Stack
 
-<a href="https://gene-insight-explorer.vercel.app/">
-<img src="https://img.shields.io/badge/🌐_Live_Demo-Visit_Now-success?style=for-the-badge">
-</a>
-
-<a href="https://github.com/aryansingh200600thakur-dot/Gene-Insight-Explorer">
-<img src="https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github">
-</a>
-
-<a href="https://gene-insight-explorer.onrender.com/docs">
-<img src="https://img.shields.io/badge/API-Documentation-009688?style=for-the-badge&logo=fastapi">
-</a>
-
-</p>
-
-<p align="center">
-
-<img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&style=flat-square">
-
-<img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&style=flat-square">
-
-<img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&style=flat-square">
-
-<img src="https://img.shields.io/badge/Python-3776AB?logo=python&style=flat-square">
-
-<img src="https://img.shields.io/badge/TailwindCSS-38BDF8?logo=tailwindcss&style=flat-square">
-
-<img src="https://img.shields.io/badge/Vite-646CFF?logo=vite&style=flat-square">
-
-<img src="https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel&style=flat-square">
-
-<img src="https://img.shields.io/badge/Render-Deployed-46E3B7?style=flat-square">
-
-</p>
-
----
-
-# 📖 Overview
-
-Gene Insight Explorer is a modern full-stack bioinformatics platform that enables users to explore human genes through an intuitive web interface.
-
-The application combines trusted biological databases with AI-assisted biological interpretation to simplify genomic exploration for students, researchers, educators, and biotechnology enthusiasts.
-
-Instead of searching across multiple resources, users can retrieve gene information, identifiers, genomic coordinates, chromosome details, and AI-generated biological insights from a single platform.
-
----
-
-# ✨ Key Features
-
-### 🧬 Human Gene Search
-
-Search thousands of human genes using official gene symbols.
-
-Examples:
-
-- TP53
-- BRCA1
-- EGFR
-- MYC
-- KRAS
-
----
-
-### 🤖 AI Biological Insights
-
-Generate AI-assisted biological interpretations to simplify complex genomic information.
-
----
-
-### 🌍 Scientific Database Integration
-
-Integrated with trusted biological resources including:
-
-- MyGene.info
-- NCBI Gene
-- Ensembl
-- UniProt
-
----
-
-### 📍 Comprehensive Gene Information
-
-Retrieve
-
-- Gene Summary
-- Gene Name
-- Chromosome
-- Entrez ID
-- Ensembl ID
-- UniProt ID
-- Taxonomy ID
-- Gene Type
-- Genomic Coordinates
-
----
-
-### 🎨 Modern User Experience
-
-- Responsive Design
-- Premium UI
-- Glassmorphism
-- Smooth Animations
-- Interactive Components
-- Fast Navigation
-
----
-
-# 🏗️ System Architecture
-
-```
-                User
-
-                  │
-
-                  ▼
-
-      React + TypeScript Frontend
-
-                  │
-
-          Axios REST Requests
-
-                  │
-
-                  ▼
-
-         FastAPI Backend (Python)
-
-                  │
-
-        ┌─────────┼─────────┐
-
-        ▼         ▼         ▼
-
-   MyGene.info   AI API   External Resources
-
-                  │
-
-                  ▼
-
-           Processed Gene Data
-
-                  │
-
-                  ▼
-
-        Interactive Web Interface
-```
-
----
-
-# 🛠️ Technology Stack
-
-## Frontend
-
+### Frontend
 - React
 - TypeScript
 - Vite
 - Tailwind CSS
 - Framer Motion
-- Axios
+- Lucide React
 
----
-
-## Backend
-
+### Backend
 - FastAPI
 - Python
 - HTTPX
-- Pydantic
 
----
+### Biological data services
+- MyGene.info
+- NCBI
+- Ensembl
+- QuickGO / Gene Ontology
+- UniProt links
 
-## Deployment
+## Run locally
 
-Frontend
-
-- Vercel
-
-Backend
-
-- Render
-
----
-
-# 🔬 Scientific Data Sources
-
-| Database | Purpose |
-|-----------|---------|
-| MyGene.info | Gene Information |
-| NCBI | Official Gene Resources |
-| Ensembl | Genomic Coordinates |
-| UniProt | Protein Information |
-
----
-
-# 📂 Project Structure
-
-```
-Gene-Insight-Explorer
-
-├── frontend
-│
-│   ├── components
-│   ├── hooks
-│   ├── pages
-│   ├── services
-│   ├── assets
-│   └── App.tsx
-│
-├── backend
-│
-│   ├── api
-│   ├── clients
-│   ├── services
-│   ├── schemas
-│   └── main.py
-│
-└── README.md
-```
-
----
-
-# 🚀 Live Application
-
-### 🌐 Frontend
-
-https://gene-insight-explorer.vercel.app/
-
----
-
-### ⚙️ Backend API
-
-https://gene-insight-explorer.onrender.com
-
----
-
-### 📚 API Documentation
-
-https://gene-insight-explorer.onrender.com/docs
-
----
-
-# ⚙️ Local Installation
-
-## Clone Repository
-
-```bash
-git clone https://github.com/aryansingh200600thakur-dot/Gene-Insight-Explorer.git
-```
-
-Move into the project
-
-```bash
-cd Gene-Insight-Explorer
-```
-
----
-
-## Frontend
+### Frontend
 
 ```bash
 cd frontend
@@ -280,9 +47,9 @@ npm install
 npm run dev
 ```
 
----
+Set `VITE_API_URL` when the API is not running at `http://localhost:8000`.
 
-## Backend
+### Backend
 
 ```bash
 cd backend
@@ -290,127 +57,8 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
----
+## Production notes
 
-# 🌍 Environment Variables
+The AI interpretation endpoint in the current codebase is a deterministic interpretation layer with curated responses for selected genes; it should not be described as a general-purpose generative AI model until a real model provider is integrated.
 
-Frontend
-
-```
-VITE_API_URL=http://127.0.0.1:8000
-```
-
-Production
-
-```
-VITE_API_URL=https://gene-insight-explorer.onrender.com
-```
-
----
-
-# 📸 Screenshots
-
-## 🏠 Homepage
-
-<img width="1892" height="917" alt="Screenshot 2026-07-31 111152" src="https://github.com/user-attachments/assets/fcc104f1-133e-44f5-a88c-f9a77a57f6e7" />
-
-
----
-
-## 🔍 Gene Search
-
-<img width="1887" height="882" alt="Screenshot 2026-07-31 111240" src="https://github.com/user-attachments/assets/94d2ab2a-4455-4828-9f6f-1bcd37471bdb" />
-
-
----
-
-## 🤖 AI Insights
-
-<img width="1891" height="911" alt="Screenshot 2026-07-31 111332" src="https://github.com/user-attachments/assets/17bc1766-f4ab-472c-87a0-f5c6c2b3f14a" />
-
-
----
-
-## 📊 Gene Information
-
-<img width="1877" height="666" alt="Screenshot 2026-07-31 111313" src="https://github.com/user-attachments/assets/3fa6d146-cac0-44c4-9a48-507cf51912d3" />
-
-
----
-
-# 🚀 Future Roadmap
-
-- Disease-Gene Association Explorer
-- Gene Interaction Network
-- Biological Pathway Visualization
-- Mutation Explorer
-- PDF Report Export
-- Gene Comparison
-- AI Chat Assistant
-- Advanced Biological Analytics
-
----
-
-# 👨‍💻 Developer
-
-## Aryan Singh
-
-**B.Tech – Genetic Engineering**
-
-**Sharda University**
-
-Building AI-powered solutions at the intersection of Bioinformatics and Software Engineering.
-
-### Connect With Me
-
-**LinkedIn**
-
-https://linkedin.com/in/aryans18
-
-**GitHub**
-
-https://github.com/aryansingh200600thakur-dot
-
----
-
-# 🤝 Contributing
-
-Contributions, ideas, feature requests, and bug reports are welcome.
-
-If you'd like to contribute:
-
-1. Fork the repository
-
-2. Create a new branch
-
-3. Commit your changes
-
-4. Open a Pull Request
-
----
-
-# 📄 License
-
-This project is released under the MIT License.
-
----
-
-# ⭐ Support
-
-If you found this project useful,
-
-⭐ Star this repository
-
-🍴 Fork the project
-
-💬 Share your feedback
-
----
-
-<p align="center">
-
-🧬 Built with React • FastAPI • Python • TypeScript
-
-AI × Bioinformatics × Software Engineering
-
-</p>
+All AI/interpretation content should be verified against the linked source records and primary literature before research or clinical use.

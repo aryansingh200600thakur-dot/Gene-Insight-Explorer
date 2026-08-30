@@ -1,60 +1,25 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-function useGeneSearch() {
-
+export default function useGeneSearch() {
   const [symbol, setSymbol] = useState("");
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
 
-
-  const handleSubmit = (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
-
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const trimmedSymbol = symbol.trim().toUpperCase();
-
-
     if (!trimmedSymbol) {
-
-      setError(
-        "Please enter a gene symbol."
-      );
-
+      setError("Enter a gene symbol to begin.");
       return;
     }
-
-
-    const genePattern = /^[A-Z0-9-]+$/;
-
-
-    if (!genePattern.test(trimmedSymbol)) {
-
-      setError(
-        "Invalid gene symbol format."
-      );
-
+    if (!/^[A-Z0-9-]+$/.test(trimmedSymbol)) {
+      setError("Use an official-style gene symbol containing letters, numbers or hyphens.");
       return;
     }
-
-
     setError("");
-
-    navigate(`/gene/${trimmedSymbol}`);
+    navigate(`/gene/${encodeURIComponent(trimmedSymbol)}`);
   };
 
-
-  return {
-    symbol,
-    setSymbol,
-    error,
-    handleSubmit,
-  };
+  return { symbol, setSymbol, error, handleSubmit };
 }
-
-
-export default useGeneSearch;

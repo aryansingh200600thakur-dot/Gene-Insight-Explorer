@@ -1,50 +1,59 @@
-import { Link } from "react-router-dom";
+﻿import { Dna, ExternalLink, Code2, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
-function Navbar() {
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  const links = [
+    { label: "Home", href: "/" },
+    { label: "Platform", href: "/#platform" },
+    { label: "How it works", href: "/#workflow" },
+  ];
+
   return (
-    <nav className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-
-        <Link
-          to="/"
-          className="text-xl font-bold text-slate-900"
-        >
-          Gene Insight Explorer
+    <header className="site-nav">
+      <div className="shell nav-inner">
+        <Link to="/" className="brand" onClick={() => setOpen(false)}>
+          <span className="brand-mark"><Dna size={20} /></span>
+          <span>
+            <strong>Gene Insight</strong>
+            <em>Explorer</em>
+          </span>
         </Link>
 
-
-        <div className="flex items-center gap-6 text-sm font-medium text-slate-600">
-
-          <Link
-            to="/"
-            className="transition hover:text-blue-600"
-          >
-            Home
-          </Link>
-
-
-          <Link
-            to="/"
-            className="transition hover:text-blue-600"
-          >
-            Search
-          </Link>
-
-
+        <nav className={`nav-links ${open ? "is-open" : ""}`}>
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className={location.pathname === "/" && link.label === "Home" ? "active" : ""}
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+            </a>
+          ))}
           <a
-            href="https://github.com/"
+            href="https://github.com/aryansingh200600thakur-dot/Gene-Insight-Explorer"
             target="_blank"
-            rel="noopener noreferrer"
-            className="transition hover:text-blue-600"
+            rel="noreferrer"
+            onClick={() => setOpen(false)}
           >
-            GitHub
+            <Code2 size={15} /> GitHub <ExternalLink size={13} />
           </a>
+        </nav>
 
+        <div className="nav-actions">
+          <Link to="/" className="nav-cta" onClick={() => setOpen(false)}>
+            Analyze a gene <span>â†’</span>
+          </Link>
+          <button className="mobile-menu" aria-label="Toggle navigation" onClick={() => setOpen((v) => !v)}>
+            {open ? <X size={21} /> : <Menu size={21} />}
+          </button>
         </div>
-
       </div>
-    </nav>
+    </header>
   );
 }
 
-export default Navbar;

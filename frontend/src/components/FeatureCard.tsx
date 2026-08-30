@@ -1,57 +1,22 @@
+import { ArrowUpRight, BrainCircuit, Network, Search } from "lucide-react";
+
 interface FeatureCardProps {
   title: string;
   description: string;
+  icon?: "search" | "ai" | "network";
 }
 
-function FeatureCard({
-  title,
-  description,
-}: FeatureCardProps) {
+const icons = { search: Search, ai: BrainCircuit, network: Network };
+
+export default function FeatureCard({ title, description, icon = "search" }: FeatureCardProps) {
+  const Icon = icons[icon];
   return (
-    <div
-      className="
-        flex
-        min-h-[220px]
-        flex-col
-        rounded-2xl
-        border
-        border-white/10
-        bg-white/10
-        p-8
-        shadow-xl
-        backdrop-blur-xl
-        transition
-        duration-300
-        hover:-translate-y-2
-        hover:bg-white/20
-        hover:shadow-2xl
-      "
-    >
-
-      <h3
-        className="
-        text-xl
-        font-semibold
-        text-white
-        "
-      >
-        {title}
-      </h3>
-
-
-      <p
-        className="
-        mt-4
-        leading-7
-        text-slate-300
-        "
-      >
-        {description}
-      </p>
-
-
-    </div>
+    <article className="feature-card">
+      <div className="feature-icon"><Icon size={20} /></div>
+      <span className="feature-index">0{Object.keys(icons).indexOf(icon) + 1}</span>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <ArrowUpRight className="feature-arrow" size={18} />
+    </article>
   );
 }
-
-export default FeatureCard;

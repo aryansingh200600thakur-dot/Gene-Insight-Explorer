@@ -1,39 +1,23 @@
-function Footer() {
+﻿import { Dna, Code2, ExternalLink } from "lucide-react";
+
+export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-12">
-
-        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-
-          <div>
-            <h2 className="text-2xl font-bold text-slate-900">
-              Gene Insight Explorer
-            </h2>
-
-            <p className="mt-2 text-slate-600">
-              AI-powered human gene exploration platform.
-            </p>
+    <footer className="site-footer">
+      <div className="shell footer-main">
+        <div>
+          <div className="brand footer-brand">
+            <span className="brand-mark"><Dna size={19} /></span>
+            <span><strong>Gene Insight</strong><em>Explorer</em></span>
           </div>
-
-          <div className="text-center md:text-right">
-            <p className="font-semibold text-slate-900">
-              Powered By
-            </p>
-
-            <p className="mt-2 text-slate-600">
-              MyGene.info • Gene Ontology • FastAPI • React
-            </p>
-          </div>
-
+          <p>Explore. Understand. Discover.</p>
         </div>
-
-        <div className="mt-10 border-t border-slate-200 pt-6 text-center text-sm text-slate-500">
-          © 2026 Gene Insight Explorer. All rights reserved.
+        <div className="footer-links">
+          <a href="https://github.com/aryansingh200600thakur-dot/Gene-Insight-Explorer" target="_blank" rel="noreferrer"><Code2 size={15} /> Source code <ExternalLink size={12} /></a>
+          <span>React Â· TypeScript Â· FastAPI Â· Python</span>
         </div>
-
       </div>
+      <div className="shell footer-bottom"><span>Â© 2026 Gene Insight Explorer</span><span>For research & educational exploration.</span></div>
     </footer>
   );
 }
 
-export default Footer;

@@ -1,64 +1,32 @@
-function StatCard({
-  number,
-  label,
-}: {
-  number: string;
-  label: string;
-}) {
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm transition hover:shadow-md">
-      <h3 className="text-4xl font-bold text-blue-600">
-        {number}
-      </h3>
+import { motion } from "framer-motion";
+import { Activity, Database, Dna, Layers3 } from "lucide-react";
 
-      <p className="mt-3 text-slate-600">
-        {label}
-      </p>
-    </div>
-  );
-}
+const stats = [
+  { icon: Dna, value: "20K+", label: "Human genes" },
+  { icon: Database, value: "4+", label: "Integrated sources" },
+  { icon: Layers3, value: "3", label: "GO domains" },
+  { icon: Activity, value: "Live", label: "API-powered data" },
+];
 
 export default function StatisticsSection() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
-
-      <div className="mb-12 text-center">
-
-        <h2 className="text-4xl font-bold text-white">
-          Why Gene Insight Explorer?
-        </h2>
-
-        <p className="mt-4 text-slate-600">
-          Built to make biological information accessible,
-          fast, and easier to understand.
-        </p>
-
+    <section className="stats-section" id="platform">
+      <div className="shell stats-grid">
+        {stats.map(({ icon: Icon, value, label }, index) => (
+          <motion.div
+            key={label}
+            className="stat-item"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.08 }}
+          >
+            <span className="stat-icon"><Icon size={18} /></span>
+            <strong>{value}</strong>
+            <span>{label}</span>
+          </motion.div>
+        ))}
       </div>
-
-      <div className="grid gap-6 md:grid-cols-4">
-
-        <StatCard
-          number="25K+"
-          label="Human Genes"
-        />
-
-        <StatCard
-          number="3"
-          label="Gene Ontology Categories"
-        />
-
-        <StatCard
-          number="AI"
-          label="Biological Interpretation"
-        />
-
-        <StatCard
-          number="24/7"
-          label="Accessible Anywhere"
-        />
-
-      </div>
-
     </section>
   );
 }

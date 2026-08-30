@@ -6,249 +6,70 @@ from app.clients.mygene_client import mygene_client
 
 
 class GeneService:
-    """Business logic for gene operations."""
+    """Normalize public gene data into the application's stable schema."""
 
     async def get_gene(self, symbol: str) -> dict[str, Any]:
-
         symbol = symbol.strip().upper()
-
         if not symbol:
-            raise HTTPException(
-                status_code=400,
-                detail="Gene symbol cannot be empty.",
-            )
+            raise HTTPException(status_code=400, detail="Gene symbol cannot be empty.")
 
-
-        data = await mygene_client.search_gene(symbol)
+        try:
+            data = await mygene_client.search_gene(symbol)
+        except RuntimeError as exc:
+            raise HTTPException(status_code=503, detail=str(exc)) from exc
 
         hits = data.get("hits", [])
-
-
         if not hits:
-            raise HTTPException(
-                status_code=404,
-                detail=f"Gene '{symbol}' not found.",
-            )
-
+            raise HTTPException(status_code=404, detail=f"Gene '{symbol}' not found.")
 
         gene = hits[0]
-
-
-        entrez_id = str(
-            gene.get("_id", "")
-        )
-
-
-        gene_symbol = gene.get(
-            "symbol",
-            symbol
-        )
-
-
-
-        # -----------------------------
-        # Ensembl ID
-        # -----------------------------
+        entrez_id = str(gene.get("_id", "")) or None
+        gene_symbol = gene.get("symbol") or symbol
 
         ensembl = gene.get("ensembl")
-
-        ensembl_id = None
-
-
         if isinstance(ensembl, dict):
+            ensembl_id = ensembl.get("gene")
+        elif isinstance(ensembl, list) and ensembl:
+            ensembl_id = ensembl[0].get("gene")
+        else:
+            ensembl_id = None
 
-            ensembl_id = ensembl.get(
-                "gene"
-            )
-
-
-        elif isinstance(ensembl, list) and len(ensembl) > 0:
-
-            ensembl_id = ensembl[0].get(
-                "gene"
-            )
-
-
-
-
-        # -----------------------------
-        # UniProt ID
-        # -----------------------------
-
-        uniprot = gene.get(
-            "uniprot"
-        )
-
+        uniprot = gene.get("uniprot")
         uniprot_id = None
-
-
         if isinstance(uniprot, dict):
+            swissprot = uniprot.get("Swiss-Prot")
+            uniprot_id = swissprot[0] if isinstance(swissprot, list) and swissprot else swissprot
 
-            swissprot = uniprot.get(
-                "Swiss-Prot"
-            )
+        genomic = gene.get("genomic_pos")
+        location = genomic[0] if isinstance(genomic, list) and genomic else genomic if isinstance(genomic, dict) else {}
+        chromosome = location.get("chr") or gene.get("chrom")
 
-
-            if isinstance(swissprot, list):
-
-                uniprot_id = (
-                    swissprot[0]
-                    if swissprot
-                    else None
-                )
-
-            else:
-
-                uniprot_id = swissprot
-
-
-
-
-        # -----------------------------
-        # Genomic Information
-        # -----------------------------
-
-        genomic = gene.get(
-            "genomic_pos"
-        )
-
-
-        genomic_start = None
-        genomic_end = None
-        strand = None
-        chromosome = None
-
-
-
-        if isinstance(genomic, dict):
-
-            chromosome = genomic.get(
-                "chr"
-            )
-
-            genomic_start = genomic.get(
-                "start"
-            )
-
-            genomic_end = genomic.get(
-                "end"
-            )
-
-            strand = genomic.get(
-                "strand"
-            )
-
-
-
-        elif isinstance(genomic, list) and len(genomic) > 0:
-
-            chromosome = genomic[0].get(
-                "chr"
-            )
-
-            genomic_start = genomic[0].get(
-                "start"
-            )
-
-            genomic_end = genomic[0].get(
-                "end"
-            )
-
-            strand = genomic[0].get(
-                "strand"
-            )
-
-
-
-        # Backup chromosome field
-
-        if not chromosome:
-
-            chromosome = gene.get(
-                "chrom"
-            )
-
-
-
-
+        aliases = gene.get("alias", [])
+        if isinstance(aliases, str):
+            aliases = [aliases]
+        elif not isinstance(aliases, list):
+            aliases = []
 
         return {
-
-
-            # Basic Information
-
             "symbol": gene_symbol,
-
-            "name": gene.get(
-                "name"
-            ),
-
-            "summary": gene.get(
-                "summary"
-            ),
-
-
-
-            # Identifiers
-
+            "name": gene.get("name"),
+            "summary": gene.get("summary"),
             "entrez_id": entrez_id,
-
             "ensembl_id": ensembl_id,
-
             "uniprot_id": uniprot_id,
-
-
-
-            # Biological Information
-
             "chromosome": chromosome,
-
-            "taxid": gene.get(
-                "taxid"
-            ),
-
-            "gene_type": gene.get(
-                "type_of_gene"
-            ),
-
-            "aliases": gene.get(
-                "alias",
-                []
-            ),
-
-
-
-            # Genomic Coordinates
-
-            "genomic_start": genomic_start,
-
-            "genomic_end": genomic_end,
-
-            "strand": strand,
-
-
-
-            # External Resources
-
+            "taxid": gene.get("taxid"),
+            "gene_type": gene.get("type_of_gene"),
+            "aliases": aliases,
+            "genomic_start": location.get("start"),
+            "genomic_end": location.get("end"),
+            "strand": location.get("strand"),
             "links": {
-
-                "ncbi":
-                f"https://www.ncbi.nlm.nih.gov/gene/{entrez_id}",
-
-
-                "ensembl":
-                f"https://www.ensembl.org/Homo_sapiens/"
-                f"Gene/Summary?g={gene_symbol}",
-
-
-                "uniprot":
-                f"https://www.uniprot.org/uniprotkb"
-                f"?query={gene_symbol}",
-
+                "ncbi": f"https://www.ncbi.nlm.nih.gov/gene/{entrez_id}" if entrez_id else f"https://www.ncbi.nlm.nih.gov/gene/?term={gene_symbol}",
+                "ensembl": f"https://www.ensembl.org/Homo_sapiens/Gene/Summary?g={gene_symbol}",
+                "uniprot": f"https://www.uniprot.org/uniprotkb?query={gene_symbol}",
             },
-
         }
-
 
 
 gene_service = GeneService()

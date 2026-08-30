@@ -1,268 +1,79 @@
-import DNAAnimation from "./DNAAnimation";
-import SearchBar from "./SearchBar";
 import { motion } from "framer-motion";
+import { ArrowRight, BrainCircuit, Database, Dna, Network, ShieldCheck } from "lucide-react";
+import SearchBar from "./SearchBar";
 
-function Hero() {
+export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 text-white">
+    <section className="hero-section">
+      <div className="hero-grid" />
+      <div className="orb orb-one" />
+      <div className="orb orb-two" />
 
-
-      {/* Background Effects */}
-
-      <div className="absolute inset-0">
-
-        <div className="
-        absolute left-10 top-20
-        h-96 w-96
-        rounded-full
-        bg-cyan-400/20
-        blur-3xl
-        animate-pulse
-        "/>
-
-
-        <div className="
-        absolute right-10 bottom-20
-        h-96 w-96
-        rounded-full
-        bg-purple-500/20
-        blur-3xl
-        animate-pulse
-        "/>
-
-      </div>
-
-
-
-      <div className="
-      relative mx-auto
-      flex max-w-7xl
-      flex-col
-      gap-16
-      px-6
-      py-24
-      lg:flex-row
-      lg:items-center
-      ">
-
-
-
-        {/* LEFT CONTENT */}
-
+      <div className="shell hero-layout">
         <motion.div
-          initial={{opacity:0,x:-40}}
-          animate={{opacity:1,x:0}}
-          transition={{duration:0.8}}
-          className="flex-1 text-center lg:text-left"
+          className="hero-copy"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
         >
-
-
-          <span className="
-          inline-block
-          rounded-full
-          border
-          border-cyan-400/30
-          bg-cyan-400/10
-          px-5
-          py-2
-          text-sm
-          font-semibold
-          text-cyan-300
-          ">
-            🚀 Gene Insight Explorer v2.0
-          </span>
-
-
-
-          <h1 className="
-          mt-8
-          text-5xl
-          font-extrabold
-          tracking-tight
-          md:text-7xl
-          ">
-
-            Explore Human Genes
-
-            <span className="
-            block
-            bg-gradient-to-r
-            from-cyan-400
-            to-blue-500
-            bg-clip-text
-            text-transparent
-            ">
-              With AI Biological Intelligence
-            </span>
-
+          <div className="eyebrow"><span className="pulse-dot" /> COMPUTATIONAL BIOLOGY · v3.0</div>
+          <h1>
+            Explore the biology
+            <span> behind a gene.</span>
           </h1>
-
-
-
-          <p className="
-          mt-8
-          max-w-2xl
-          text-lg
-          leading-8
-          text-slate-300
-          ">
-
-            Search human genes, analyze biological functions,
-            explore Gene Ontology pathways, and generate
-            understandable AI-powered scientific insights.
-
+          <p className="hero-lede">
+            A research-focused workspace for exploring human genes, genomic identifiers,
+            Gene Ontology annotations and AI-assisted biological interpretation.
           </p>
 
+          <SearchBar />
 
-
-          <div className="
-          mt-10
-          rounded-2xl
-          border
-          border-white/10
-          bg-white/5
-          p-3
-          backdrop-blur-xl
-          ">
-
-            <SearchBar />
-
+          <div className="hero-trust">
+            <span><ShieldCheck size={15} /> Evidence-aware</span>
+            <span><Database size={15} /> Multi-source</span>
+            <span><BrainCircuit size={15} /> AI-assisted</span>
           </div>
-
-
-
-          <div className="
-          mt-8
-          flex
-          flex-wrap
-          justify-center
-          gap-3
-          lg:justify-start
-          ">
-
-
-            {[
-              "🧬 Human Genes",
-              "🤖 AI Insights",
-              "📚 Gene Ontology",
-              "⚡ Fast Search"
-            ].map((item)=>(
-              <span
-              key={item}
-              className="
-              rounded-full
-              border
-              border-white/10
-              bg-white/5
-              px-5
-              py-2
-              text-sm
-              text-slate-200
-              backdrop-blur
-              "
-              >
-                {item}
-              </span>
-            ))}
-
-
-          </div>
-
-
         </motion.div>
-
-
-
-
-
-        {/* RIGHT VISUAL */}
 
         <motion.div
-          initial={{opacity:0,scale:0.8}}
-          animate={{opacity:1,scale:1}}
-          transition={{duration:1}}
-          className="relative flex flex-1 justify-center"
+          className="hero-visual"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.1 }}
         >
-
-
-          <div className="
-          relative
-          flex
-          h-80
-          w-80
-          items-center
-          justify-center
-          rounded-full
-          border
-          border-cyan-400/30
-          bg-gradient-to-br
-          from-cyan-400/20
-          to-purple-500/20
-          shadow-2xl
-          ">
-
-
-            <div className="
-            absolute
-            h-56
-            w-56
-            rounded-full
-            border
-            border-blue-300/30
-            animate-spin
-            "/>
-
-
-          <DNAAnimation/>
-
-
+          <div className="visual-ring ring-a" />
+          <div className="visual-ring ring-b" />
+          <div className="visual-core">
+            <Dna size={92} strokeWidth={1.15} />
+            <div className="core-label">GENE<br /><strong>→</strong><br />INSIGHT</div>
           </div>
 
+          <div className="data-chip chip-gene"><Dna size={15} /> Gene data <b>01</b></div>
+          <div className="data-chip chip-ai"><BrainCircuit size={15} /> AI interpretation <b>02</b></div>
+          <div className="data-chip chip-path"><Network size={15} /> Pathways <b>03</b></div>
+          <div className="data-chip chip-db"><Database size={15} /> Sources <b>04</b></div>
 
+          <svg className="connection-lines" viewBox="0 0 600 520" aria-hidden="true">
+            <path d="M120 150 C200 170 230 205 270 245" />
+            <path d="M485 155 C405 180 370 210 330 245" />
+            <path d="M130 390 C205 350 235 315 275 280" />
+            <path d="M470 390 C400 350 365 315 325 280" />
+          </svg>
 
-          {/* Floating Cards */}
-
-
-          <div className="
-          absolute
-          left-0
-          top-20
-          rounded-xl
-          border
-          border-white/10
-          bg-white/10
-          px-5
-          py-3
-          backdrop-blur-xl
-          ">
-            🔬 Protein Function
+          <div className="visual-caption">
+            <span>ONE WORKSPACE</span>
+            <strong>Biology → Data → Interpretation</strong>
           </div>
-
-
-          <div className="
-          absolute
-          right-0
-          bottom-20
-          rounded-xl
-          border
-          border-white/10
-          bg-white/10
-          px-5
-          py-3
-          backdrop-blur-xl
-          ">
-            🧠 AI Analysis
-          </div>
-
-
         </motion.div>
-
-
-
       </div>
 
+      <div className="shell hero-bottom">
+        <div><strong>20,000+</strong><span>human genes</span></div>
+        <div><strong>4+</strong><span>scientific sources</span></div>
+        <div><strong>3</strong><span>GO domains</span></div>
+        <div><strong>1</strong><span>research workspace</span></div>
+        <a href="#platform">Explore platform <ArrowRight size={15} /></a>
+      </div>
     </section>
   );
 }
-
-export default Hero;

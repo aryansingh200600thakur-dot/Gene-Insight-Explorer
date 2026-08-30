@@ -1,101 +1,14 @@
 import { motion } from "framer-motion";
-import { Dna, BrainCircuit, Database } from "lucide-react";
+import { BrainCircuit, Database, Dna, LoaderCircle } from "lucide-react";
 
-function LoadingSpinner() {
-  return (
-    <div className="flex min-h-[60vh] items-center justify-center">
-      <div className="w-full max-w-xl rounded-3xl border border-cyan-500/20 bg-white/5 p-10 backdrop-blur-xl">
-
-        <div className="flex justify-center">
-          <motion.div
-            animate={{
-              rotate: 360,
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="rounded-full bg-cyan-500/10 p-6"
-          >
-            <Dna className="h-14 w-14 text-cyan-400" />
-          </motion.div>
-        </div>
-
-        <h2 className="mt-8 text-center text-3xl font-bold text-white">
-          Initializing Gene Insight Engine
-        </h2>
-
-        <p className="mt-3 text-center text-slate-300">
-          Connecting to biological databases...
-        </p>
-
-        <div className="mt-8 space-y-5">
-
-          <LoadingRow
-            icon={<Database size={20} />}
-            text="Loading gene information"
-          />
-
-          <LoadingRow
-            icon={<BrainCircuit size={20} />}
-            text="Preparing AI biological insights"
-          />
-
-          <LoadingRow
-            icon={<Dna size={20} />}
-            text="Fetching genomic annotations"
-          />
-
-        </div>
-
-        <div className="mt-10 h-2 overflow-hidden rounded-full bg-slate-800">
-
-          <motion.div
-            animate={{
-              x: ["-100%", "100%"],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 2,
-              ease: "linear",
-            }}
-            className="h-full w-1/3 rounded-full bg-cyan-400"
-          />
-
-        </div>
-
-        <p className="mt-8 text-center text-sm text-slate-400">
-          The backend may take up to <span className="font-semibold text-cyan-300">30–60 seconds</span> to wake up after inactivity on the free hosting plan.
-        </p>
-
-      </div>
-    </div>
-  );
+export default function LoadingSpinner() {
+  return <div className="loading-wrap"><div className="loading-card">
+    <div className="loading-orbit"><motion.div animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }}><Dna size={36} /></motion.div></div>
+    <span className="section-kicker">ANALYSIS PIPELINE</span>
+    <h2>Assembling your gene profile</h2>
+    <p>Fetching public biological records and preparing the interpretation layer.</p>
+    <div className="loading-steps"><span><Database size={15} /> Gene record</span><span><Dna size={15} /> Annotations</span><span><BrainCircuit size={15} /> AI layer</span></div>
+    <div className="loading-bar"><motion.i animate={{ x: ["-100%", "100%"] }} transition={{ duration: 1.7, repeat: Infinity, ease: "linear" }} /></div>
+    <small><LoaderCircle size={13} /> External APIs can take longer after inactivity.</small>
+  </div></div>;
 }
-
-function LoadingRow({
-  icon,
-  text,
-}: {
-  icon: React.ReactNode;
-  text: string;
-}) {
-  return (
-    <motion.div
-      animate={{
-        opacity: [0.5, 1, 0.5],
-      }}
-      transition={{
-        duration: 1.5,
-        repeat: Infinity,
-      }}
-      className="flex items-center gap-3 text-slate-300"
-    >
-      <span className="text-cyan-400">{icon}</span>
-      <span>{text}...</span>
-    </motion.div>
-  );
-}
-
-export default LoadingSpinner;
