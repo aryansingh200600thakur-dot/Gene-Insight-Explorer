@@ -240,7 +240,7 @@ python -m venv venv
 Activate it on Windows:
 
 ```bash
-venv\Scripts\activate
+venv\Scripts\Activate.ps1
 ```
 
 Install dependencies:
