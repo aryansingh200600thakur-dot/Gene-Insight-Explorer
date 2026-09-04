@@ -318,10 +318,9 @@ The AI functionality is intended as an **exploratory research-assistance feature
 - [ ] Expanded pathway analysis
 - [ ] Network-based gene exploration
 - [ ] Additional biological databases
-- [ ] More advanced AI-assisted research workflows
-- [ ] Automated testing and CI/CD
-
----
+- [ ] Evidence-aware biological interpretation
+- [ ] Advanced research workflows
+- [ ] Automated API and frontend testing
 
 ## 🔬 Scientific Scope
 
@@ -353,11 +352,10 @@ Building software and research projects at the intersection of biology and techn
 
 ## 📄 License
 
-This project is currently under development.
+This project is licensed under the MIT License.
 
-License information will be added as the project evolves.
+See the [LICENSE](LICENSE) file for details.
 
----
 
 <p align="center">
   <strong>🧬 Biology × 💻 Technology × 🤖 AI</strong>
