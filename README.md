@@ -1,5 +1,15 @@
 # 🧬 Gene Insight Explorer
 
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/aryansingh200600thakur-dot/Gene-Insight-Explorer)
+[![Frontend](https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-blue)](https://react.dev/)
+[![Backend](https://img.shields.io/badge/Backend-FastAPI-009688)](https://fastapi.tiangolo.com/)
+[![Biology](https://img.shields.io/badge/Domain-Computational%20Biology-purple)](#)
+[![Status](https://img.shields.io/badge/Status-Active%20Development-orange)](#)
+
+### 🌐 Live Demo
+
+**[Launch Gene Insight Explorer →](https://gene-insight-explorer.vercel.app/)**
+
 > **Explore genes. Connect biological knowledge. Discover insights.**
 
 Gene Insight Explorer is an interactive computational biology platform designed to bring together gene-level information from multiple biological databases in a single interface.
